@@ -443,6 +443,7 @@ public class GuiLogin extends javax.swing.JFrame {
             //return;
         }
 
+        
         for (int i = 0; i < parametros.size(); i++) {
             LoginParametro parametro = (LoginParametro) parametros.get(i);
             Object linha[] = {parametro};
