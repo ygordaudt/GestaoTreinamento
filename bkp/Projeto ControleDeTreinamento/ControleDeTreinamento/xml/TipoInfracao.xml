@@ -1,0 +1,29 @@
+<list>
+  <model.TipoInfracao>
+    <idTipoInfracao>1</idTipoInfracao>
+    <descricaoTipoInfracao>Xingamento</descricaoTipoInfracao>
+    <contextoTipoInfracao>
+      <id>1</id>
+      <descricao>Comportamento</descricao>
+      <pontuacao>10</pontuacao>
+    </contextoTipoInfracao>
+  </model.TipoInfracao>
+  <model.TipoInfracao>
+    <idTipoInfracao>2</idTipoInfracao>
+    <descricaoTipoInfracao>Falta de Atencao</descricaoTipoInfracao>
+    <contextoTipoInfracao>
+      <id>1</id>
+      <descricao>Comportamento</descricao>
+      <pontuacao>10</pontuacao>
+    </contextoTipoInfracao>
+  </model.TipoInfracao>
+  <model.TipoInfracao>
+    <idTipoInfracao>3</idTipoInfracao>
+    <descricaoTipoInfracao>Ultrapassagem Errada</descricaoTipoInfracao>
+    <contextoTipoInfracao>
+      <id>2</id>
+      <descricao>Imprudencia</descricao>
+      <pontuacao>5</pontuacao>
+    </contextoTipoInfracao>
+  </model.TipoInfracao>
+</list>

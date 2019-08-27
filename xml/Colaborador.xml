@@ -1,0 +1,14 @@
+<list>
+  <model.Colaborador>
+    <empresa>
+      <nome>SIT</nome>
+      <turmas/>
+    </empresa>
+    <funcao>
+      <descricao>ASSISTENTE DE TI</descricao>
+    </funcao>
+    <matricula>3311</matricula>
+    <nome>YGOR DAUDT DO NASCIMENTO FREITAS</nome>
+    <estado>ATIVO</estado>
+  </model.Colaborador>
+</list>

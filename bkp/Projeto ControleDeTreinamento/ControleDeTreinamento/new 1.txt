@@ -1,0 +1,53 @@
+        
+		
+		if (consultando) {
+            if(!(txtMatricula.getText().length() > 0)) {
+            JOptionPane.showMessageDialog(null, "Informe a matrícula do colaborador.", "Cadastro de Colaborador", JOptionPane.ERROR_MESSAGE);
+            txtMatricula.requestFocus();
+            } else {
+                Integer matriculaConsulta = Integer.parseInt(txtMatricula.getText());
+                preencherTabelaMatricula(matriculaConsulta);
+            }
+            
+        } else if (validarCampos()) {
+            Empresa empresa = (Empresa) cboEmpresa.getSelectedItem();
+            Funcao funcao = (Funcao) cboFuncao.getSelectedItem();
+            Integer matricula = Integer.parseInt(txtMatricula.getText());
+            String nome = txtNome.getText();
+            String estado = new String();
+            if (rbtnAtivo.isSelected()) estado = EstadoColaborador.ATIVO.toString();
+            else if (rbtnAfastado.isSelected()) estado = EstadoColaborador.AFASTADO.toString();
+            else if (rbtnDesligado.isSelected()) estado = EstadoColaborador.DESLIGADO.toString();
+            
+            if (cadastrando) {
+                Aluno al = new Aluno (empresa, funcao, matricula, nome, EstadoColaborador.valueOf(estado));
+                try {
+                    dadosAluno.incluir(al);
+                    JOptionPane.showMessageDialog(null, "Colaborador cadastrado com sucesso!", "Cadastro de Colaborador", JOptionPane.INFORMATION_MESSAGE);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Cadastro de Colaborador", JOptionPane.ERROR_MESSAGE);
+                }
+                
+
+            int opcao
+                = JOptionPane.showOptionDialog(null,
+                    "Continuar Cadastrando?",
+                    "Pergunta",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE, null,
+                    new String[]{"Sim", "Não"}, "Sim");
+            if (opcao == 1) {
+                preencherTabela();
+            } else if (opcao == 0) {
+                preencherTabela();
+                btnCadastrar.doClick();
+                consultando = false;
+                alterando = false;
+                cadastrando = true;
+                cboEmpresa.setSelectedItem(empresa);
+                cboFuncao.setSelectedItem(funcao);
+                txtMatricula.requestFocus();
+                
+            }
+
+            } else if (alterando) {

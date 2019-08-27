@@ -1,0 +1,11 @@
+<list>
+  <model.TipoTime>
+    <descricao>AZUL</descricao>
+  </model.TipoTime>
+  <model.TipoTime>
+    <descricao>VERDE</descricao>
+  </model.TipoTime>
+  <model.TipoTime>
+    <descricao>VERMELHO</descricao>
+  </model.TipoTime>
+</list>

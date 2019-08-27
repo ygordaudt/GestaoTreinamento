@@ -1,0 +1,15 @@
+<list>
+  <model.Instrutor>
+    <empresaColaborador>
+      <idEmpresa>1</idEmpresa>
+      <nomeEmpresa>SITMACAE</nomeEmpresa>
+    </empresaColaborador>
+    <funcaoColaborador>
+      <idFuncao>2</idFuncao>
+      <descricaoFuncao>INSTRUTOR</descricaoFuncao>
+    </funcaoColaborador>
+    <estadoColaborador>ATIVO</estadoColaborador>
+    <matricula>5</matricula>
+    <nome>LIZARDO</nome>
+  </model.Instrutor>
+</list>
