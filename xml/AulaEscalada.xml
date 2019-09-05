@@ -1,1 +1,19 @@
-<list/>
+<list>
+  <model.AulaEscalada>
+    <idAulaEscalada>1</idAulaEscalada>
+    <equipe>
+      <idEquipe>1</idEquipe>
+      <empresa>
+        <idEmpresa>1</idEmpresa>
+        <nomeEmpresa>SIT</nomeEmpresa>
+      </empresa>
+      <corEquipe>
+        <id>1</id>
+        <descricao>AZUL</descricao>
+      </corEquipe>
+      <descricaoEquipe>SIT-AZUL</descricaoEquipe>
+    </equipe>
+    <dataAulaEscalada>2019-09-06</dataAulaEscalada>
+    <estadoAulaEscalada>ANDAMENTO</estadoAulaEscalada>
+  </model.AulaEscalada>
+</list>

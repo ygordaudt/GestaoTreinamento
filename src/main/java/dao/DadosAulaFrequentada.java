@@ -2,15 +2,15 @@ package dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.AulaFrequentada;
+import model.AulaMinistrada;
 
 public class DadosAulaFrequentada implements Dados{
-    private static List<AulaFrequentada> aulasFrequentadas = new ArrayList();
+    private static List<AulaMinistrada> aulasFrequentadas = new ArrayList();
     private static final String nomeArquivo = "\\AulaFrequentada.xml";
 
     @Override
     public void incluir(Object objeto) throws Exception {
-        AulaFrequentada aulaFrequentada = (AulaFrequentada) objeto;
+        AulaMinistrada aulaFrequentada = (AulaMinistrada) objeto;
         aulasFrequentadas.add(aulaFrequentada);
         Xml.gravaXml(nomeArquivo, aulasFrequentadas);
     }
@@ -22,14 +22,14 @@ public class DadosAulaFrequentada implements Dados{
     
     @Override
     public void remover(Object objeto) throws Exception {
-        AulaFrequentada aulaFrequentada = (AulaFrequentada) objeto;
+        AulaMinistrada aulaFrequentada = (AulaMinistrada) objeto;
         aulasFrequentadas.remove(aulaFrequentada);
         Xml.gravaXml(nomeArquivo, aulasFrequentadas);
     }
 
     @Override
-    public List<AulaFrequentada> getList() throws Exception{
-        aulasFrequentadas = (List<AulaFrequentada>) Xml.leXml(nomeArquivo);
+    public List<AulaMinistrada> getList() throws Exception{
+        aulasFrequentadas = (List<AulaMinistrada>) Xml.leXml(nomeArquivo);
         return aulasFrequentadas;
     }
 

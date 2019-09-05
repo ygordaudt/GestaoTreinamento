@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.Aluno;
 import model.AulaEscalada;
-import model.AulaFrequentada;
+import model.AulaMinistrada;
 import model.Empresa;
 import model.Funcao;
 import model.Equipe;
@@ -74,7 +74,7 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
     private List<Empresa> empresas = new ArrayList<>();
     private List<Equipe> equipes = new ArrayList<>();
     private List<AulaEscalada> aulasEscaladas = new ArrayList<>();
-    private List<AulaFrequentada> aulasFrequentadas = new ArrayList<>();
+    private List<AulaMinistrada> aulasMinistradas = new ArrayList<>();
     private List<Instrutor> instrutores = new ArrayList<>();
     private List<Aluno> alunos = new ArrayList<>();
     private List<TipoPercurso> tiposPercurso = new ArrayList<>();
@@ -82,7 +82,7 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
     private Empresa empresa;
     private Equipe equipe;
     private AulaEscalada aulaEscalada;
-    private AulaFrequentada aulaFrequentada;
+    private AulaMinistrada aulaMinistrada;
     private Instrutor instrutor;
     private TipoPercurso tipoPercurso;
     private Aluno aluno;
@@ -104,12 +104,12 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
         this.aulaEscalada = aulaEscalada;
     }
 
-    public AulaFrequentada getAulaFrequentada() {
-        return aulaFrequentada;
+    public AulaMinistrada getAulaFrequentada() {
+        return aulaMinistrada;
     }
 
-    public void setAulaFrequentada(AulaFrequentada aulaFrequentada) {
-        this.aulaFrequentada = aulaFrequentada;
+    public void setAulaFrequentada(AulaMinistrada aulaFrequentada) {
+        this.aulaMinistrada = aulaFrequentada;
     }
 
     public Instrutor getInstrutor() {
@@ -436,7 +436,7 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(chbTodosAula))))
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 16, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -454,18 +454,18 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                                 .addComponent(btnDefinir))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 9, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnRegistrarPenalidades, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnAtualizar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16)))
+                                .addGap(57, 57, 57)
+                                .addComponent(btnGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(16, 16, 16))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -615,17 +615,23 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
             int qtdLinhas = tblFrequencias.getRowCount();
             for (int i = qtdLinhas - 1; i >= 0; i--) {
                 aluno = (Aluno) tblFrequencias.getValueAt(i, 0);
-                // Verifica qual aula está sendo tratada
-                for (AulaFrequentada aula : aluno.getAulasFrequentadas()) {
+                for (AulaMinistrada aula : aulasMinistradas) {
                     if (aula.getAulaEscalada().equals(aulaEscalada)) {
-                        aulaFrequentada = aula;
+                        aulaMinistrada = aula;
+                    }
+                }
+                
+                // Verifica qual aula está sendo tratada
+                for (AulaMinistrada aula : aulasMinistradas) {
+                    if (aula.getAulaEscalada().equals(aulaEscalada)) {
+                        aulaMinistrada = aula;
                     }
                 }
                 // Define a presença/falta
                 if (tblFrequencias.getValueAt(i, 3).equals(true)) {
-                    aulaFrequentada.setPresenca(true);
+                    aulaMinistrada.setPresenca(true);
                 } else {
-                    aulaFrequentada.setPresenca(false);
+                    aulaMinistrada.setPresenca(false);
                 }
             }
             
@@ -677,12 +683,11 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
     private void cboEquipeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboEquipeItemStateChanged
         // TODO add your handling code here:
         if (evt.getStateChange() == ItemEvent.SELECTED && cboEquipe.getSelectedItem()!=cboInicialFiltrar) { // Restringe execução apenas em caso de seleção manual no combobox
-            Equipe equi = (Equipe) cboEquipe.getSelectedItem();
             
             cboAulaEscalada.removeAllItems();
             cboAulaEscalada.addItem(cboInicialSelecionar);
 
-            for (AulaEscalada aula : equi.getAulasEscaladas()) {
+            for (AulaEscalada aula : aulasEscaladas) {
                 if (aula.getEstadoAulaEscalada().equals(EstadoAulaEscalada.ANDAMENTO)) {
                     cboAulaEscalada.addItem(aula);
                 }
@@ -711,15 +716,15 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
             }
         
             // Verifica qual aula frequentada está sendo tratada
-            for (AulaFrequentada aula : aluno.getAulasFrequentadas()) {
+            for (AulaMinistrada aula : aulasMinistradas) {
                 if (aula.getAulaEscalada().equals(aulaEscalada)) {
-                    aulaFrequentada = aula;
+                    aulaMinistrada = aula;
                 }
             }
 
             GuiRegPenalidade gp = GuiRegPenalidade.getInstance();
             gp.setAluno(aluno);
-            gp.setAulaFrequentada(aulaFrequentada);
+            gp.setAulaFrequentada(aulaMinistrada);
             gp.setVisible(true);
 
         } catch (HeadlessException e) {
@@ -952,7 +957,7 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
         btnAlterar.setEnabled(false);
         btnDefinir.setEnabled(true);
         
-        // aulaFrequentada = new AulaFrequentada(instrutor, tipoPercurso, ERROR, closable)
+        // aulaMinistrada = new AulaMinistrada(instrutor, tipoPercurso, ERROR, closable)
     }
     
     private void prepararDefinicao() {
@@ -971,22 +976,22 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
     public void atualizarTabela(Aluno aluno) {
         DefaultTableModel tbl = (DefaultTableModel) tblFrequencias.getModel();
         
-        for (AulaFrequentada aula : aluno.getAulasFrequentadas()) {
+        for (AulaMinistrada aula : aluno.getAulasFrequentadas()) {
             if (aula.getAulaEscalada().equals(aulaEscalada)) {
-                aulaFrequentada = aula;
+                aulaMinistrada = aula;
             }
         }
         
         int totalPontuacaoAtual = 0;
-        for (InfracaoCometida infracao : aulaFrequentada.getInfracoesCometidas()) {
+        for (InfracaoCometida infracao : aulaMinistrada.getInfracoesCometidas()) {
             totalPontuacaoAtual += infracao.getTipoInfracao().getContextoTipoInfracao().getPontuacao();
         }
         
         tbl.setValueAt(aluno, tblFrequencias.getSelectedRow(), 0);
-        tbl.setValueAt(aulaFrequentada.getInfracoesCometidas().size(), tblFrequencias.getSelectedRow(), 1);
+        tbl.setValueAt(aulaMinistrada.getInfracoesCometidas().size(), tblFrequencias.getSelectedRow(), 1);
         tbl.setValueAt(totalPontuacaoAtual, tblFrequencias.getSelectedRow(), 2);
         tbl.setValueAt(true, tblFrequencias.getSelectedRow(), 3);
-        tbl.setValueAt(aulaFrequentada.getDescricaoParecer(), tblFrequencias.getSelectedRow(), 4);
+        tbl.setValueAt(aulaMinistrada.getDescricaoParecer(), tblFrequencias.getSelectedRow(), 4);
 
     }
     

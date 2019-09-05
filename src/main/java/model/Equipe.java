@@ -1,13 +1,10 @@
 package model;
 
 import dao.DadosEquipe;
-import gui.GuiEscala;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -18,7 +15,6 @@ public class Equipe {
     private Empresa empresa;
     private CorEquipe corEquipe;
     private String descricaoEquipe;
-    private List<AulaEscalada> aulasEscaladas;
 
     public Equipe(Empresa empresa, CorEquipe corEquipe) {
         Integer totalEquipes = getTotalEquipes();
@@ -26,21 +22,20 @@ public class Equipe {
         this.empresa = empresa;
         this.corEquipe = corEquipe;
         this.descricaoEquipe = empresa.getNomeEmpresa() + "-" + corEquipe.getDescricao();
-        this.aulasEscaladas = new ArrayList<>();
     }
-    
+    /*
     public void inserirAulaEscalada(LocalDate data) throws Exception {
         for (AulaEscalada aula : this.getAulasEscaladas()) {
             if(aula.getDataAulaEscalada().equals(data)) throw new Exception ("Impossível! \nEsta data já exite!");
         }
-       // this.aulasEscaladas.add(new AulaEscalada(data));
+       //this.aulasEscaladas.add(new AulaEscalada(data));
     }
     
     public void removerAulaEscalada(AulaEscalada aulaEscalada) throws Exception  {
         if (aulaEscalada.getEstadoAulaEscalada().equals(EstadoAulaEscalada.CONCLUIDO)) throw new Exception ("Impossível! \nEsta data já foi concluída!");
-        this.aulasEscaladas.remove(aulaEscalada);
+        //this.aulasEscaladas.remove(aulaEscalada);
     }
-
+    */
     public Integer getIdEquipe() {
         return idEquipe;
     }
@@ -68,14 +63,6 @@ public class Equipe {
 
     public void setDescricaoEquipe(String descricaoEquipe) {
         this.descricaoEquipe = descricaoEquipe;
-    }
-
-    public List<AulaEscalada> getAulasEscaladas() {
-        return aulasEscaladas;
-    }
-
-    public void setAulasEscaladas(List<AulaEscalada> aulasEscaladas) {
-        this.aulasEscaladas = aulasEscaladas;
     }
     
     public List<Equipe> getEquipes() {

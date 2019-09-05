@@ -18,7 +18,6 @@ public class Aluno extends Colaborador {
     private final Integer idAluno;
     private Equipe equipeAluno;
     private EstadoAluno estadoAluno;
-    private List<AulaFrequentada> aulasFrequentadas;
     private List<SinistroCometido> sinistrosCometidos;
     private Integer pontuacaoAluno;
 
@@ -27,10 +26,9 @@ public class Aluno extends Colaborador {
         Integer totalAlunos = getTotalAlunos();
         this.idAluno = totalAlunos++;
         this.estadoAluno = EstadoAluno.NAO_MATRICULADO;
-        this.aulasFrequentadas = new ArrayList<>();
         this.pontuacaoAluno = 0;
     }
-   
+   /*
     public void inserirAulaFrequentada(AulaEscalada aulaEscalada, Instrutor instrutor, TipoPercurso tipoPercurso, String numeroCarro, boolean presenca) {
         this.aulasFrequentadas.add(new AulaFrequentada(aulaEscalada, instrutor, tipoPercurso, numeroCarro, presenca));
     }
@@ -38,7 +36,7 @@ public class Aluno extends Colaborador {
     public void deletarPunicao(AulaFrequentada aulaFrequentada) {
         this.aulasFrequentadas.remove(aulaFrequentada);
     }
-    
+    */
     public void inserirSinistroCometido(Integer numeroCarro, TipoSinistro tipoSinistro, LocalSinistro localSinistro, String descricaoLocal) {
         this.sinistrosCometidos.add(new SinistroCometido(this, numeroCarro, tipoSinistro, localSinistro, descricaoLocal));
     }
@@ -67,13 +65,6 @@ public class Aluno extends Colaborador {
         this.estadoAluno = estadoAluno;
     }
 
-    public List<AulaFrequentada> getAulasFrequentadas() {
-        return aulasFrequentadas;
-    }
-
-    public void setAulasFrequentadas(List<AulaFrequentada> aulasFrequentadas) {
-        this.aulasFrequentadas = aulasFrequentadas;
-    }
 
     public List<SinistroCometido> getSinistrosCometidos() {
         return sinistrosCometidos;
@@ -123,7 +114,7 @@ public class Aluno extends Colaborador {
         }
         return totalAlunos;
     }
-    
+    /*
     public Integer getPontuacaoTotal() {
         Integer somaPontuacao = 0;
         for (int i=0; i<this.aulasFrequentadas.size(); i++) {
@@ -131,7 +122,7 @@ public class Aluno extends Colaborador {
         }
         return somaPontuacao;
     }
-
+    */
     @Override
     public String toString() {
         return this.getMatricula() + " - " + this.getNome();

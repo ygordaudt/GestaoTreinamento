@@ -10,23 +10,5 @@
       <descricao>AZUL</descricao>
     </corEquipe>
     <descricaoEquipe>SIT-AZUL</descricaoEquipe>
-    <aulasEscaladas>
-      <model.AulaEscalada>
-        <dataAulaEscalada>2019-07-28</dataAulaEscalada>
-        <estadoAulaEscalada>CONCLUIDO</estadoAulaEscalada>
-      </model.AulaEscalada>
-      <model.AulaEscalada>
-        <dataAulaEscalada>2019-07-24</dataAulaEscalada>
-        <estadoAulaEscalada>CONCLUIDO</estadoAulaEscalada>
-      </model.AulaEscalada>
-      <model.AulaEscalada>
-        <dataAulaEscalada>2019-07-23</dataAulaEscalada>
-        <estadoAulaEscalada>ANDAMENTO</estadoAulaEscalada>
-      </model.AulaEscalada>
-      <model.AulaEscalada>
-        <dataAulaEscalada>2019-07-21</dataAulaEscalada>
-        <estadoAulaEscalada>ANDAMENTO</estadoAulaEscalada>
-      </model.AulaEscalada>
-    </aulasEscaladas>
   </model.Equipe>
 </list>

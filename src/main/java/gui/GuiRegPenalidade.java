@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.Aluno;
-import model.AulaFrequentada;
+import model.AulaMinistrada;
 import model.InfracaoCometida;
 import model.TipoInfracao;
 
@@ -41,7 +41,7 @@ public class GuiRegPenalidade extends javax.swing.JDialog {
     
     private static boolean aberto = false;
     
-    private AulaFrequentada aulaFrequentada;
+    private AulaMinistrada aulaFrequentada;
     private Aluno aluno;
     private TipoInfracao tipoInfracao;
     private InfracaoCometida infracaoCometida;
@@ -334,7 +334,7 @@ public class GuiRegPenalidade extends javax.swing.JDialog {
         definirPontuacaoTotal();
     }
 
-    public void definirData(AulaFrequentada aulaFrequentada) {
+    public void definirData(AulaMinistrada aulaFrequentada) {
         lblData.setText(aulaFrequentada.getAulaEscalada().getDataAulaEscalada().toString());
     }
     
@@ -357,11 +357,11 @@ public class GuiRegPenalidade extends javax.swing.JDialog {
         lblPontuacaoTotal.setText(Integer.toString(pontuacaoTotal));
     }
 
-    public AulaFrequentada getAulaFrequentada() {
+    public AulaMinistrada getAulaFrequentada() {
         return aulaFrequentada;
     }
 
-    public void setAulaFrequentada(AulaFrequentada aulaFrequentada) {
+    public void setAulaFrequentada(AulaMinistrada aulaFrequentada) {
         this.aulaFrequentada = aulaFrequentada;
     }
 

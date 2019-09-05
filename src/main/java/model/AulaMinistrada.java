@@ -8,8 +8,9 @@ import java.util.Objects;
  *
  * @author Ygor
  */
-public class AulaFrequentada {
+public class AulaMinistrada {
     private final AulaEscalada aulaEscalada;
+    private Aluno aluno;
     private Instrutor nomeInstrutor;
     private TipoPercurso tipoPercurso;
     private String numeroCarro;
@@ -18,8 +19,9 @@ public class AulaFrequentada {
     private Integer pontuacaoAulaFrequentada;
     private boolean presenca;
 
-    public AulaFrequentada(AulaEscalada aulaEscalada, Instrutor instrutor, TipoPercurso tipoPercurso, String numeroCarro, boolean presenca) {
+    public AulaMinistrada(AulaEscalada aulaEscalada, Aluno aluno, Instrutor instrutor, TipoPercurso tipoPercurso, String numeroCarro, boolean presenca) {
         this.aulaEscalada = aulaEscalada;
+        this.aluno = aluno;
         this.nomeInstrutor = instrutor;
         this.tipoPercurso = tipoPercurso;
         this.numeroCarro = numeroCarro;
@@ -36,6 +38,22 @@ public class AulaFrequentada {
     public void deletarInfracaoCometida(InfracaoCometida infracaoCometida) {
         this.infracoesCometidas.remove(infracaoCometida);
         this.setPontuacaoAulaFrequentada(pontuacaoAulaFrequentada-=infracaoCometida.getTipoInfracao().getContextoTipoInfracao().getPontuacao());
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public boolean isPresenca() {
+        return presenca;
+    }
+
+    public void setPresenca(boolean presenca) {
+        this.presenca = presenca;
     }
 
     public Instrutor getInstrutor() {
@@ -116,7 +134,7 @@ public class AulaFrequentada {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final AulaFrequentada other = (AulaFrequentada) obj;
+        final AulaMinistrada other = (AulaMinistrada) obj;
         if (!Objects.equals(this.aulaEscalada, other.aulaEscalada)) {
             return false;
         }

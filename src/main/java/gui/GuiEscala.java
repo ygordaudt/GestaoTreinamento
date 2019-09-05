@@ -5,33 +5,23 @@
  */
 package gui;
 
-import dao.DadosAluno;
 import dao.DadosAulaEscalada;
-import dao.DadosInstrutor;
 import dao.DadosEmpresa;
 import dao.DadosEquipe;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.ItemEvent;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import model.Aluno;
 import model.AulaEscalada;
 import model.Empresa;
 import model.Equipe;
-import model.CorEquipe;
 import model.EstadoAulaEscalada;
 
 
@@ -53,6 +43,7 @@ public class GuiEscala extends javax.swing.JInternalFrame {
     private final DadosAulaEscalada dadosAulaEscalada = new DadosAulaEscalada();
     private List<Empresa> empresas = new ArrayList<>();
     private List<Equipe> equipes = new ArrayList<>();
+    private List<AulaEscalada> aulasEscaladas = new ArrayList<>();
 
     private final String cboInicialFiltrar = "Filtrar:";
     private final String cboInicialSelecionar = "Selecione:";
@@ -359,7 +350,7 @@ public class GuiEscala extends javax.swing.JInternalFrame {
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
         // TODO add your handling code here:
         try {
-            Equipe equi = (Equipe) tblEscala.getValueAt(tblEscala.getSelectedRow(), 0);
+           // Equipe equi = (Equipe) tblEscala.getValueAt(tblEscala.getSelectedRow(), 0);
             AulaEscalada aula = (AulaEscalada) tblEscala.getValueAt(tblEscala.getSelectedRow(), 1);
 
             if (validarRemocao(aula)) {
@@ -372,8 +363,14 @@ public class GuiEscala extends javax.swing.JInternalFrame {
                     new String[]{"Sim", "Não"}, "Sim");
 
                 if (opcao == 0) {
-                    equi.removerAulaEscalada(aula);
-                    dadosEquipe.alterar();
+                    //equi.removerAulaEscalada(aula);
+                    //dadosEquipe.alterar();
+                    try {
+                        dadosAulaEscalada.remover(aula);
+                    } catch (Exception ex) {
+                        Logger.getLogger(GuiEscala.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
                     JOptionPane.showMessageDialog(rootPane, "Aula removida com sucesso.");
                 }
                 resetarTela();
@@ -483,6 +480,20 @@ this.dispose(); // Não consegui atualizar os objetos das CBO. Por isso, após r
         }
         
         try {
+            aulasEscaladas = dadosAulaEscalada.getList();
+        } catch (Exception ex) {
+            Logger.getLogger(GuiEscala.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        for (AulaEscalada aulaEscalada : aulasEscaladas) {
+            if (aulaEscalada.getEstadoAulaEscalada().equals(EstadoAulaEscalada.ANDAMENTO)) {
+                Object linha [] = {aulaEscalada.getEquipe(), aulaEscalada, aulaEscalada.getEstadoAulaEscalada()};
+                tbl.addRow(linha);
+            }
+        }
+        
+        /*
+        try {
             equipes = new DadosEquipe().getList();
         } catch (Exception ex) {
             Logger.getLogger(GuiEscala.class.getName()).log(Level.SEVERE, null, ex);
@@ -498,7 +509,7 @@ this.dispose(); // Não consegui atualizar os objetos das CBO. Por isso, após r
                 }
             }
         }
-        
+        */
         
         resetarTela();
     }
@@ -512,16 +523,16 @@ this.dispose(); // Não consegui atualizar os objetos das CBO. Por isso, após r
             tbl.removeRow(0);
         }
 
-        for (AulaEscalada aulaEscalada : equipe.getAulasEscaladas()) {
+        for (AulaEscalada aulaEscalada : aulasEscaladas) {
             if (aulaEscalada.getEstadoAulaEscalada().equals(EstadoAulaEscalada.ANDAMENTO)) {
-                Object linha [] = {equipe, aulaEscalada, aulaEscalada.getEstadoAulaEscalada()};
+                Object linha [] = {aulaEscalada.getEquipe(), aulaEscalada, aulaEscalada.getEstadoAulaEscalada()};
                 tbl.addRow(linha);
             }
         }
         resetarTela();
     }
         
-    public void preencherTabelaConsultaRealizada(Equipe equipe) {
+    public void preencherTabelaConsultaRealizada(Equipe equipe) {        
         DefaultTableModel tbl = (DefaultTableModel) tblEscala.getModel();
         tblEscala.setRowSorter(new TableRowSorter(tbl));
 
@@ -529,10 +540,10 @@ this.dispose(); // Não consegui atualizar os objetos das CBO. Por isso, após r
         for (int i = qtdLinhas - 1; i >= 0; i--) {
             tbl.removeRow(0);
         }
-
-        for (AulaEscalada aulaEscalada : equipe.getAulasEscaladas()) {
-            if (aulaEscalada.getEstadoAulaEscalada().equals(EstadoAulaEscalada.CONCLUIDO)) {
-                Object linha [] = {equipe, aulaEscalada, aulaEscalada.getEstadoAulaEscalada()};
+        
+        for (AulaEscalada aulaEscalada : aulasEscaladas) {
+            if (aulaEscalada.getEstadoAulaEscalada().equals(EstadoAulaEscalada.ANDAMENTO) && aulaEscalada.getEquipe().equals(equipe)) {
+                Object linha [] = {aulaEscalada.getEquipe(), aulaEscalada, aulaEscalada.getEstadoAulaEscalada()};
                 tbl.addRow(linha);
             }
         }
@@ -548,9 +559,11 @@ this.dispose(); // Não consegui atualizar os objetos das CBO. Por isso, após r
             tbl.removeRow(0);
         }
 
-        for (AulaEscalada aulaEscalada : equipe.getAulasEscaladas()) {
-            Object linha [] = {equipe, aulaEscalada, aulaEscalada.getEstadoAulaEscalada()};
-            tbl.addRow(linha);
+        for (AulaEscalada aulaEscalada : aulasEscaladas) {
+            if (aulaEscalada.getEquipe().equals(equipe)) {
+                Object linha [] = {aulaEscalada.getEquipe(), aulaEscalada, aulaEscalada.getEstadoAulaEscalada()};
+                tbl.addRow(linha);
+            }
         }
         
         if (tbl.getRowCount() == 0) {
