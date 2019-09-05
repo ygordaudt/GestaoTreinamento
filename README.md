@@ -1,2 +1,2 @@
 # GestaoTreinamento
-Sistema para acompanhamento diário de treinamentos efeituados junto aos colaboradores de uma empresa.
+Aplicativo Desktop em Java Swing, com persistência em XML (xstream), para acompanhamento diário de treinamentos efetuados junto aos colaboradores de uma empresa.
