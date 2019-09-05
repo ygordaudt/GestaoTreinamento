@@ -30,7 +30,7 @@
         </model.AulaEscalada>
         <model.AulaEscalada>
           <dataAulaEscalada>2019-07-24</dataAulaEscalada>
-          <estadoAulaEscalada>ANDAMENTO</estadoAulaEscalada>
+          <estadoAulaEscalada>CONCLUIDO</estadoAulaEscalada>
         </model.AulaEscalada>
         <model.AulaEscalada>
           <dataAulaEscalada>2019-07-23</dataAulaEscalada>
@@ -140,7 +140,7 @@
         </model.AulaEscalada>
         <model.AulaEscalada>
           <dataAulaEscalada>2019-07-24</dataAulaEscalada>
-          <estadoAulaEscalada>ANDAMENTO</estadoAulaEscalada>
+          <estadoAulaEscalada>CONCLUIDO</estadoAulaEscalada>
         </model.AulaEscalada>
         <model.AulaEscalada>
           <dataAulaEscalada>2019-07-23</dataAulaEscalada>
