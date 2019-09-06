@@ -10,7 +10,6 @@ import java.util.Objects;
  */
 public class AulaMinistrada {
     private final AulaEscalada aulaEscalada;
-    private Aluno aluno;
     private Instrutor nomeInstrutor;
     private TipoPercurso tipoPercurso;
     private String numeroCarro;
@@ -19,9 +18,8 @@ public class AulaMinistrada {
     private Integer pontuacaoAulaFrequentada;
     private boolean presenca;
 
-    public AulaMinistrada(AulaEscalada aulaEscalada, Aluno aluno, Instrutor instrutor, TipoPercurso tipoPercurso, String numeroCarro, boolean presenca) {
+    public AulaMinistrada(AulaEscalada aulaEscalada, Instrutor instrutor, TipoPercurso tipoPercurso, String numeroCarro, boolean presenca) {
         this.aulaEscalada = aulaEscalada;
-        this.aluno = aluno;
         this.nomeInstrutor = instrutor;
         this.tipoPercurso = tipoPercurso;
         this.numeroCarro = numeroCarro;
@@ -38,14 +36,6 @@ public class AulaMinistrada {
     public void deletarInfracaoCometida(InfracaoCometida infracaoCometida) {
         this.infracoesCometidas.remove(infracaoCometida);
         this.setPontuacaoAulaFrequentada(pontuacaoAulaFrequentada-=infracaoCometida.getTipoInfracao().getContextoTipoInfracao().getPontuacao());
-    }
-
-    public Aluno getAluno() {
-        return aluno;
-    }
-
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
     }
 
     public boolean isPresenca() {

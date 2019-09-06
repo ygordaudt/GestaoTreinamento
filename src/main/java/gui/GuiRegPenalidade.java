@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.Aluno;
@@ -41,7 +40,7 @@ public class GuiRegPenalidade extends javax.swing.JDialog {
     
     private static boolean aberto = false;
     
-    private AulaMinistrada aulaFrequentada;
+    private AulaMinistrada aulaMinistrada;
     private Aluno aluno;
     private TipoInfracao tipoInfracao;
     private InfracaoCometida infracaoCometida;
@@ -232,16 +231,16 @@ public class GuiRegPenalidade extends javax.swing.JDialog {
         descricaoParecer = txtParecer.getText();
         
         // Limpa as infrações adicionadas nesta aula
-        aulaFrequentada.getInfracoesCometidas().clear();
+        aulaMinistrada.getInfracoesCometidas().clear();
         
-        aulaFrequentada.setDescricaoParecer(descricaoParecer);
+        aulaMinistrada.setDescricaoParecer(descricaoParecer);
 
         // Adiciona as infrações marcadas na tabela para a aula frequentada do aluno em questão.
         int qtdLinhas = tblInfracoes.getRowCount();
         for (int i = qtdLinhas - 1; i >= 0; i--) {
             if (tblInfracoes.getValueAt(i, 3).equals(true)) {
                 tipoInfracao = (TipoInfracao) tblInfracoes.getValueAt(i, 1);
-                aulaFrequentada.inserirInfracao(tipoInfracao);
+                aulaMinistrada.inserirInfracao(tipoInfracao);
             }
         }
         
@@ -264,11 +263,11 @@ public class GuiRegPenalidade extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         
         // Define Labels
-        definirData(aulaFrequentada);
+        definirData(aulaMinistrada);
         definirAluno(aluno);
         
         preencherTabela();
-        txtParecer.setText(aulaFrequentada.getDescricaoParecer());
+        txtParecer.setText(aulaMinistrada.getDescricaoParecer());
 
         definirPontuacaoTotal();
     }//GEN-LAST:event_formWindowOpened
@@ -308,12 +307,12 @@ public class GuiRegPenalidade extends javax.swing.JDialog {
         for (int i = qtdLinhas - 1; i >= 0; i--) {
             tipoInfracao = (TipoInfracao)tblInfracoes.getValueAt(i, 1);
             // Verifica qual infracao que está sendo tratado no for
-            for (InfracaoCometida infracao : aulaFrequentada.getInfracoesCometidas()) {
+            for (InfracaoCometida infracao : aulaMinistrada.getInfracoesCometidas()) {
                 if (infracao.getTipoInfracao().equals(tipoInfracao)) {
                     infracaoCometida = infracao;
                 }
             }
-            if (aulaFrequentada.getInfracoesCometidas().contains(infracaoCometida)) {
+            if (aulaMinistrada.getInfracoesCometidas().contains(infracaoCometida)) {
                 tblInfracoes.setValueAt(true, i, 3);
             }            
         }
@@ -323,7 +322,7 @@ public class GuiRegPenalidade extends javax.swing.JDialog {
         qtdLinhas = tblInfracoes.getRowCount();
         for (int i = qtdLinhas - 1; i >= 0; i--) {
             tipoInfracao = (TipoInfracao)tblInfracoes.getValueAt(i, 1);
-            for (InfracaoCometida infracaoCometida : aulaFrequentada.getInfracoesCometidas()) {
+            for (InfracaoCometida infracaoCometida : aulaMinistrada.getInfracoesCometidas()) {
                 if (infracaoCometida.getTipoInfracao().equals(tipoInfracao)) {
                     tblInfracoes.setValueAt(true, i, 3);
                 }
@@ -358,11 +357,11 @@ public class GuiRegPenalidade extends javax.swing.JDialog {
     }
 
     public AulaMinistrada getAulaFrequentada() {
-        return aulaFrequentada;
+        return aulaMinistrada;
     }
 
     public void setAulaFrequentada(AulaMinistrada aulaFrequentada) {
-        this.aulaFrequentada = aulaFrequentada;
+        this.aulaMinistrada = aulaFrequentada;
     }
 
     public Aluno getAluno() {

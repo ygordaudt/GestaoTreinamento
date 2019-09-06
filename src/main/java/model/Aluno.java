@@ -19,6 +19,7 @@ public class Aluno extends Colaborador {
     private Equipe equipeAluno;
     private EstadoAluno estadoAluno;
     private List<SinistroCometido> sinistrosCometidos;
+    private List<AulaMinistrada> aulasMinistradas;
     private Integer pontuacaoAluno;
 
     public Aluno(Empresa empresa, Funcao funcao, Integer matricula, String nome, EstadoColaborador estadoColaborador) {
@@ -27,16 +28,17 @@ public class Aluno extends Colaborador {
         this.idAluno = totalAlunos++;
         this.estadoAluno = EstadoAluno.NAO_MATRICULADO;
         this.pontuacaoAluno = 0;
+        this.aulasMinistradas = new ArrayList<>();
     }
-   /*
-    public void inserirAulaFrequentada(AulaEscalada aulaEscalada, Instrutor instrutor, TipoPercurso tipoPercurso, String numeroCarro, boolean presenca) {
-        this.aulasFrequentadas.add(new AulaFrequentada(aulaEscalada, instrutor, tipoPercurso, numeroCarro, presenca));
+   
+    public void inserirAulaMinistradas(AulaEscalada aulaEscalada, Instrutor instrutor, TipoPercurso tipoPercurso, String numeroCarro, boolean presenca) {
+        this.aulasMinistradas.add(new AulaMinistrada(aulaEscalada, instrutor, tipoPercurso, numeroCarro, presenca));
     }
     
-    public void deletarPunicao(AulaFrequentada aulaFrequentada) {
-        this.aulasFrequentadas.remove(aulaFrequentada);
+    public void deletarPunicao(AulaMinistrada aulaMinistrada) {
+        this.aulasMinistradas.remove(aulaMinistrada);
     }
-    */
+    
     public void inserirSinistroCometido(Integer numeroCarro, TipoSinistro tipoSinistro, LocalSinistro localSinistro, String descricaoLocal) {
         this.sinistrosCometidos.add(new SinistroCometido(this, numeroCarro, tipoSinistro, localSinistro, descricaoLocal));
     }
@@ -80,6 +82,14 @@ public class Aluno extends Colaborador {
 
     public void setPontuacaoAluno(Integer pontuacaoAluno) {
         this.pontuacaoAluno = pontuacaoAluno;
+    }
+
+    public List<AulaMinistrada> getAulasMinistradas() {
+        return aulasMinistradas;
+    }
+
+    public void setAulasMinistradas(List<AulaMinistrada> aulasMinistradas) {
+        this.aulasMinistradas = aulasMinistradas;
     }
     
     public void matricularAluno(Equipe equipe) {

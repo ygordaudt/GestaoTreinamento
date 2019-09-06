@@ -15,12 +15,10 @@ import dao.DadosTipoPercurso;
 import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.awt.event.ItemEvent;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.layout.Pane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -28,13 +26,11 @@ import model.Aluno;
 import model.AulaEscalada;
 import model.AulaMinistrada;
 import model.Empresa;
-import model.Funcao;
 import model.Equipe;
 import model.EstadoAluno;
 import model.EstadoAulaEscalada;
 import model.InfracaoCometida;
 import model.Instrutor;
-import model.TipoInfracao;
 import model.TipoPercurso;
 
 /**
@@ -156,36 +152,37 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jLabel4 = new javax.swing.JLabel();
         btnAlterar = new javax.swing.JToggleButton();
-        lblEmpresa5 = new javax.swing.JLabel();
-        cboEmpresa = new javax.swing.JComboBox<>();
         btnGravar = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tblFrequencias = new javax.swing.JTable();
-        lblEmpresa7 = new javax.swing.JLabel();
-        cboEquipe = new javax.swing.JComboBox<>();
-        cboAulaEscalada = new javax.swing.JComboBox<>();
-        lblEmpresa8 = new javax.swing.JLabel();
-        cboInstrutor = new javax.swing.JComboBox<>();
-        lblEmpresa10 = new javax.swing.JLabel();
         btnRegistrarPenalidades = new javax.swing.JButton();
-        jSeparator3 = new javax.swing.JSeparator();
-        lblEmpresa11 = new javax.swing.JLabel();
-        txtNumeroCarro = new javax.swing.JTextField();
-        chbTodosInstrutor = new javax.swing.JCheckBox();
-        btnConsultar = new javax.swing.JButton();
-        btnLimpar = new javax.swing.JButton();
+        btnAtualizar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         lblEmpresa2 = new javax.swing.JLabel();
         rbtnAndamento = new javax.swing.JRadioButton();
         rbtnRealizada = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
-        jSeparator4 = new javax.swing.JSeparator();
         chbTodosAula = new javax.swing.JCheckBox();
-        jLabel1 = new javax.swing.JLabel();
+        cboEquipe = new javax.swing.JComboBox<>();
+        cboAulaEscalada = new javax.swing.JComboBox<>();
+        lblEmpresa8 = new javax.swing.JLabel();
+        lblEmpresa5 = new javax.swing.JLabel();
+        cboEmpresa = new javax.swing.JComboBox<>();
+        lblEmpresa7 = new javax.swing.JLabel();
+        btnConsultar = new javax.swing.JButton();
+        btnLimpar = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        lblEmpresa10 = new javax.swing.JLabel();
+        cboInstrutor = new javax.swing.JComboBox<>();
+        chbTodosInstrutor = new javax.swing.JCheckBox();
         cboPercurso = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        txtNumeroCarro = new javax.swing.JTextField();
+        lblEmpresa11 = new javax.swing.JLabel();
         btnDefinir = new javax.swing.JButton();
-        btnAtualizar = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblFrequencias = new javax.swing.JTable();
 
         setClosable(true);
         addFocusListener(new java.awt.event.FocusAdapter() {
@@ -213,16 +210,67 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Controle de Frequência");
-
         btnAlterar.setText("Alterar");
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarActionPerformed(evt);
             }
         });
+
+        btnGravar.setText("Gravar");
+        btnGravar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGravarActionPerformed(evt);
+            }
+        });
+
+        btnRegistrarPenalidades.setText("Registrar Penalidades | Parecer");
+        btnRegistrarPenalidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarPenalidadesActionPerformed(evt);
+            }
+        });
+
+        btnAtualizar.setText("Atualizar");
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Dados da Escala"));
+
+        lblEmpresa2.setText("Situação:");
+
+        buttonGroup1.add(rbtnAndamento);
+        rbtnAndamento.setText("Em Andamento");
+
+        buttonGroup1.add(rbtnRealizada);
+        rbtnRealizada.setText("Realizada");
+
+        chbTodosAula.setText("Exibir todos");
+        chbTodosAula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbTodosAulaActionPerformed(evt);
+            }
+        });
+
+        cboEquipe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Filtrar..." }));
+        cboEquipe.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboEquipeItemStateChanged(evt);
+            }
+        });
+
+        cboAulaEscalada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar" }));
+        cboAulaEscalada.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboAulaEscaladaItemStateChanged(evt);
+            }
+        });
+
+        lblEmpresa8.setText("Aula Escalada:");
 
         lblEmpresa5.setText("Empresa:");
 
@@ -233,12 +281,157 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
             }
         });
 
-        btnGravar.setText("Gravar");
-        btnGravar.addActionListener(new java.awt.event.ActionListener() {
+        lblEmpresa7.setText("Equipe:");
+
+        btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGravarActionPerformed(evt);
+                btnConsultarActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cboEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEmpresa5)
+                    .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cboEquipe, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEmpresa7))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblEmpresa8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(chbTodosAula))
+                            .addComponent(cboAulaEscalada, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblEmpresa2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbtnAndamento)
+                        .addGap(10, 10, 10)
+                        .addComponent(rbtnRealizada)))
+                .addContainerGap(163, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEmpresa5)
+                    .addComponent(lblEmpresa7)
+                    .addComponent(lblEmpresa8)
+                    .addComponent(chbTodosAula))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cboEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboEquipe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboAulaEscalada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(rbtnAndamento)
+                        .addComponent(rbtnRealizada)
+                        .addComponent(lblEmpresa2))
+                    .addComponent(btnConsultar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        btnLimpar.setText("Limpar / Cancelar");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("+ Registrar");
+
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Controle de Frequência");
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Dados do Percurso", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        lblEmpresa10.setText("Instrutor:");
+
+        cboInstrutor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar" }));
+
+        chbTodosInstrutor.setText("Exibir todos");
+        chbTodosInstrutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbTodosInstrutorActionPerformed(evt);
+            }
+        });
+
+        cboPercurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar" }));
+        cboPercurso.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboPercursoItemStateChanged(evt);
+            }
+        });
+
+        jLabel1.setText("Percurso:");
+
+        lblEmpresa11.setText("Número do Carro:");
+
+        btnDefinir.setText("Definir");
+        btnDefinir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDefinirActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblEmpresa10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(chbTodosInstrutor))
+                    .addComponent(cboInstrutor, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(cboPercurso, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtNumeroCarro)
+                    .addComponent(lblEmpresa11))
+                .addGap(18, 18, 18)
+                .addComponent(btnDefinir, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEmpresa10)
+                    .addComponent(chbTodosInstrutor)
+                    .addComponent(jLabel1)
+                    .addComponent(lblEmpresa11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cboInstrutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboPercurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNumeroCarro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDefinir))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         tblFrequencias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -282,7 +475,6 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblFrequencias.setColumnSelectionAllowed(true);
         tblFrequencias.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblFrequencias.getTableHeader().setReorderingAllowed(false);
         tblFrequencias.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -291,7 +483,6 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane3.setViewportView(tblFrequencias);
-        tblFrequencias.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (tblFrequencias.getColumnModel().getColumnCount() > 0) {
             tblFrequencias.getColumnModel().getColumn(1).setMinWidth(80);
             tblFrequencias.getColumnModel().getColumn(1).setPreferredWidth(80);
@@ -304,168 +495,31 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
             tblFrequencias.getColumnModel().getColumn(3).setMaxWidth(80);
         }
 
-        lblEmpresa7.setText("Equipe:");
-
-        cboEquipe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Filtrar..." }));
-        cboEquipe.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cboEquipeItemStateChanged(evt);
-            }
-        });
-
-        cboAulaEscalada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar" }));
-        cboAulaEscalada.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cboAulaEscaladaItemStateChanged(evt);
-            }
-        });
-
-        lblEmpresa8.setText("Aula Escalada:");
-
-        cboInstrutor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar" }));
-
-        lblEmpresa10.setText("Instrutor:");
-
-        btnRegistrarPenalidades.setText("Registrar Penalidades | Parecer");
-        btnRegistrarPenalidades.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarPenalidadesActionPerformed(evt);
-            }
-        });
-
-        lblEmpresa11.setText("Número do Carro:");
-
-        chbTodosInstrutor.setText("Exibir todos");
-        chbTodosInstrutor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chbTodosInstrutorActionPerformed(evt);
-            }
-        });
-
-        btnConsultar.setText("Consultar");
-        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarActionPerformed(evt);
-            }
-        });
-
-        btnLimpar.setText("Limpar / Cancelar");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimparActionPerformed(evt);
-            }
-        });
-
-        lblEmpresa2.setText("Situação:");
-
-        buttonGroup1.add(rbtnAndamento);
-        rbtnAndamento.setText("Em Andamento");
-
-        buttonGroup1.add(rbtnRealizada);
-        rbtnRealizada.setText("Realizada");
-
-        jButton1.setText("+ Registrar");
-
-        chbTodosAula.setText("Exibir todos");
-        chbTodosAula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chbTodosAulaActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Percurso:");
-
-        cboPercurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar" }));
-
-        btnDefinir.setText("Definir");
-        btnDefinir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDefinirActionPerformed(evt);
-            }
-        });
-
-        btnAtualizar.setText("Atualizar");
-        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAtualizarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(lblEmpresa10)
-                                .addGap(12, 12, 12)
-                                .addComponent(chbTodosInstrutor))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblEmpresa2)
-                                        .addGap(6, 6, 6)
-                                        .addComponent(rbtnAndamento)
-                                        .addGap(6, 6, 6)
-                                        .addComponent(rbtnRealizada))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jSeparator3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(cboEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cboEquipe, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cboAulaEscalada, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblEmpresa5)
-                                        .addGap(133, 133, 133)
-                                        .addComponent(lblEmpresa7)
-                                        .addGap(144, 144, 144)
-                                        .addComponent(lblEmpresa8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(chbTodosAula))))
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cboInstrutor, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(cboPercurso, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtNumeroCarro)
-                                    .addComponent(lblEmpresa11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                                .addComponent(btnDefinir))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 9, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnRegistrarPenalidades, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAtualizar)
-                                .addGap(57, 57, 57)
-                                .addComponent(btnGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(16, 16, 16))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRegistrarPenalidades, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAtualizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -473,63 +527,25 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(btnLimpar, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblEmpresa5)
-                    .addComponent(lblEmpresa7)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblEmpresa8)
-                        .addComponent(chbTodosAula)))
-                .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cboEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboEquipe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboAulaEscalada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(btnConsultar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(lblEmpresa2))
-                            .addComponent(rbtnAndamento)
-                            .addComponent(rbtnRealizada))))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblEmpresa10)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(chbTodosInstrutor)
-                        .addComponent(jLabel1)
-                        .addComponent(lblEmpresa11)))
-                .addGap(1, 1, 1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboInstrutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboPercurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNumeroCarro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDefinir))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1)
+                        .addComponent(btnLimpar))
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAlterar)
                     .addComponent(btnRegistrarPenalidades)
                     .addComponent(btnGravar)
                     .addComponent(btnAtualizar))
-                .addGap(12, 12, 12))
+                .addContainerGap())
         );
 
         pack();
@@ -611,22 +627,20 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
 
         if (opcao == 0) {
             
+            aulaEscalada = (AulaEscalada) cboAulaEscalada.getSelectedItem();
+            
             // Verre a tabela
             int qtdLinhas = tblFrequencias.getRowCount();
             for (int i = qtdLinhas - 1; i >= 0; i--) {
                 aluno = (Aluno) tblFrequencias.getValueAt(i, 0);
-                for (AulaMinistrada aula : aulasMinistradas) {
+                
+                // Verifica qual aula está sendo tratada
+                for (AulaMinistrada aula : aluno.getAulasMinistradas()) {
                     if (aula.getAulaEscalada().equals(aulaEscalada)) {
                         aulaMinistrada = aula;
                     }
                 }
                 
-                // Verifica qual aula está sendo tratada
-                for (AulaMinistrada aula : aulasMinistradas) {
-                    if (aula.getAulaEscalada().equals(aulaEscalada)) {
-                        aulaMinistrada = aula;
-                    }
-                }
                 // Define a presença/falta
                 if (tblFrequencias.getValueAt(i, 3).equals(true)) {
                     aulaMinistrada.setPresenca(true);
@@ -638,8 +652,8 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
             aulaEscalada.concluirAula();
 
             try {
-                dadosEquipe.alterar();
                 dadosAluno.alterar();
+                dadosAulaEscalada.alterar();
                 JOptionPane.showMessageDialog(null, "Aula concluída com sucesso!", "Gestão de Frequência", JOptionPane.INFORMATION_MESSAGE);
                 resetarTela();
             } catch (Exception e) {
@@ -683,12 +697,18 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
     private void cboEquipeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboEquipeItemStateChanged
         // TODO add your handling code here:
         if (evt.getStateChange() == ItemEvent.SELECTED && cboEquipe.getSelectedItem()!=cboInicialFiltrar) { // Restringe execução apenas em caso de seleção manual no combobox
+            Empresa emp = (Empresa) cboEmpresa.getSelectedItem();
+
+            try {
+                aulasEscaladas = dadosAulaEscalada.getList();
+            } catch (Exception e) {
             
+            }   
+                    
             cboAulaEscalada.removeAllItems();
             cboAulaEscalada.addItem(cboInicialSelecionar);
-
             for (AulaEscalada aula : aulasEscaladas) {
-                if (aula.getEstadoAulaEscalada().equals(EstadoAulaEscalada.ANDAMENTO)) {
+                if (aula.getEstadoAulaEscalada().equals(EstadoAulaEscalada.ANDAMENTO) && aula.getEquipe().getEmpresa().equals(emp)) {
                     cboAulaEscalada.addItem(aula);
                 }
             }
@@ -716,7 +736,7 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
             }
         
             // Verifica qual aula frequentada está sendo tratada
-            for (AulaMinistrada aula : aulasMinistradas) {
+            for (AulaMinistrada aula : aluno.getAulasMinistradas()) {
                 if (aula.getAulaEscalada().equals(aulaEscalada)) {
                     aulaMinistrada = aula;
                 }
@@ -763,8 +783,10 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
                     cboInstrutor.addItem(inst);
                 }
             }
+            
         } else if(cboEmpresa.getSelectedItem()==cboInicialSelecionar) {
             JOptionPane.showMessageDialog(null, "Por favor, selecione uma empresa.");
+            
         }
     }//GEN-LAST:event_chbTodosInstrutorActionPerformed
 
@@ -803,27 +825,40 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
 
     private void chbTodosAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbTodosAulaActionPerformed
         // TODO add your handling code here:
+        
+        try {
+            aulasEscaladas = dadosAulaEscalada.getList();
+        } catch (Exception e) {
+            
+        }
+        
         if (chbTodosAula.isSelected() && cboEquipe.getSelectedItem()!=cboInicialSelecionar) {
             equipe = (Equipe) cboEquipe.getSelectedItem();
             cboAulaEscalada.removeAllItems();
             cboAulaEscalada.addItem(cboInicialSelecionar);
             
-            for (AulaEscalada aula : equipe.getAulasEscaladas()) {
-                cboAulaEscalada.addItem(aula);
+            for (AulaEscalada aula : aulasEscaladas) {
+                if (aula.getEquipe().equals(equipe)) {
+                    cboAulaEscalada.addItem(aula);   
+                }
             }
             
-        } if (!chbTodosAula.isSelected() && cboEquipe.getSelectedItem()!=cboInicialSelecionar){
+        }
+        
+        if (!chbTodosAula.isSelected() && cboEquipe.getSelectedItem()!=cboInicialSelecionar){
             equipe = (Equipe) cboEquipe.getSelectedItem();
             cboAulaEscalada.removeAllItems();
             cboAulaEscalada.addItem(cboInicialSelecionar);
             
             
-            for (AulaEscalada aula : equipe.getAulasEscaladas()) {
-                if (aula.getEstadoAulaEscalada().equals(EstadoAulaEscalada.ANDAMENTO))
-                cboAulaEscalada.addItem(aula);
+            for (AulaEscalada aula : aulasEscaladas) {
+                if (aula.getEquipe().equals(equipe) && aula.getEstadoAulaEscalada().equals(EstadoAulaEscalada.ANDAMENTO))
+                    cboAulaEscalada.addItem(aula);
             }
             
-        } if(cboEquipe.getSelectedItem()==cboInicialSelecionar){
+        }
+        
+        if (cboEquipe.getSelectedItem()==cboInicialSelecionar){
             JOptionPane.showMessageDialog(null, "Por favor, selecione uma equipe.");
         }
     }//GEN-LAST:event_chbTodosAulaActionPerformed
@@ -841,9 +876,8 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
             int qtdLinhas = tblFrequencias.getRowCount();
             for (int i = qtdLinhas - 1; i >= 0; i--) {
                 aluno = (Aluno) tblFrequencias.getValueAt(i, 0);
-                aluno.inserirAulaFrequentada(aulaEscalada, instrutor, tipoPercurso, numeroCarro, false);
+                aluno.inserirAulaMinistradas(aulaEscalada, instrutor, tipoPercurso, numeroCarro, false);
             }
-            
         }
     }//GEN-LAST:event_btnDefinirActionPerformed
 
@@ -859,6 +893,13 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
             atualizarTabela(aluno);
         }
     }//GEN-LAST:event_btnAtualizarActionPerformed
+
+    private void cboPercursoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboPercursoItemStateChanged
+        // TODO add your handling code here:
+    if (evt.getStateChange()==ItemEvent.SELECTED && cboPercurso.getSelectedItem()!=cboInicialSelecionar) { // Restringe execução apenas em caso de seleção manual no combobox {
+        txtNumeroCarro.requestFocus();
+    }
+    }//GEN-LAST:event_cboPercursoItemStateChanged
 
     private void tblFrequenciasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFrequenciasMouseReleased
         // TODO add your handling code here:
@@ -885,7 +926,6 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
                 tbl.addRow(linha);
             }
         }
-
     }
    
     
@@ -976,7 +1016,7 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
     public void atualizarTabela(Aluno aluno) {
         DefaultTableModel tbl = (DefaultTableModel) tblFrequencias.getModel();
         
-        for (AulaMinistrada aula : aluno.getAulasFrequentadas()) {
+        for (AulaMinistrada aula : aluno.getAulasMinistradas()) {
             if (aula.getAulaEscalada().equals(aulaEscalada)) {
                 aulaMinistrada = aula;
             }
@@ -1052,9 +1092,10 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JLabel lblEmpresa10;
     private javax.swing.JLabel lblEmpresa11;
     private javax.swing.JLabel lblEmpresa2;

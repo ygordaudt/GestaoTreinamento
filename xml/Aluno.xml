@@ -10,9 +10,22 @@
     </funcaoColaborador>
     <estadoColaborador>ATIVO</estadoColaborador>
     <matricula>3311</matricula>
-    <nome>YGOR DAUDT</nome>
+    <nome>Ygor Daudt do Nascimento Freitas</nome>
     <idAluno>1</idAluno>
-    <estadoAluno>NAO_MATRICULADO</estadoAluno>
+    <equipeAluno>
+      <idEquipe>1</idEquipe>
+      <empresa>
+        <idEmpresa>1</idEmpresa>
+        <nomeEmpresa>SIT</nomeEmpresa>
+      </empresa>
+      <corEquipe>
+        <id>1</id>
+        <descricao>AZUL</descricao>
+      </corEquipe>
+      <descricaoEquipe>SIT-AZUL</descricaoEquipe>
+    </equipeAluno>
+    <estadoAluno>MATRICULADO</estadoAluno>
+    <aulasMinistradas/>
     <pontuacaoAluno>0</pontuacaoAluno>
   </model.Aluno>
   <model.Aluno>
@@ -26,9 +39,22 @@
     </funcaoColaborador>
     <estadoColaborador>ATIVO</estadoColaborador>
     <matricula>1234</matricula>
-    <nome>FULANO DA SILVA</nome>
+    <nome>Fulano de Tal da Silva</nome>
     <idAluno>2</idAluno>
-    <estadoAluno>NAO_MATRICULADO</estadoAluno>
+    <equipeAluno>
+      <idEquipe>1</idEquipe>
+      <empresa>
+        <idEmpresa>1</idEmpresa>
+        <nomeEmpresa>SIT</nomeEmpresa>
+      </empresa>
+      <corEquipe>
+        <id>1</id>
+        <descricao>AZUL</descricao>
+      </corEquipe>
+      <descricaoEquipe>SIT-AZUL</descricaoEquipe>
+    </equipeAluno>
+    <estadoAluno>MATRICULADO</estadoAluno>
+    <aulasMinistradas/>
     <pontuacaoAluno>0</pontuacaoAluno>
   </model.Aluno>
 </list>
