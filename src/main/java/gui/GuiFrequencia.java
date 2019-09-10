@@ -185,9 +185,19 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
         tblFrequencias = new javax.swing.JTable();
 
         setClosable(true);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                formMouseMoved(evt);
+            }
+        });
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 formFocusGained(evt);
+            }
+        });
+        addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                formMouseWheelMoved(evt);
             }
         });
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -204,9 +214,20 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
             public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameIconified(evt);
             }
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameOpened(evt);
+            }
+        });
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
+        addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                formPropertyChange(evt);
             }
         });
 
@@ -477,11 +498,6 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
         });
         tblFrequencias.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblFrequencias.getTableHeader().setReorderingAllowed(false);
-        tblFrequencias.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                tblFrequenciasMouseReleased(evt);
-            }
-        });
         jScrollPane3.setViewportView(tblFrequencias);
         if (tblFrequencias.getColumnModel().getColumnCount() > 0) {
             tblFrequencias.getColumnModel().getColumn(1).setMinWidth(80);
@@ -555,34 +571,44 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         Dimension d = this.getDesktopPane().getSize();
         this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2);
-        
+
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
         // TODO add your handling code here:
-        cboEmpresa.removeAllItems();
-        cboEmpresa.addItem(cboInicialSelecionar);
         try {
-            empresas = new DadosEmpresa().getList();
-        } catch (Exception e) {
+            this.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {
+        
+        }
+        
+        if (!registrando) {
+            prepararConsulta();
 
-        }
-        for (Empresa emp: empresas) {
-            cboEmpresa.addItem(emp);
-        }
+            cboEmpresa.removeAllItems();
+            cboEmpresa.addItem(cboInicialSelecionar);
+            try {
+                empresas = new DadosEmpresa().getList();
+            } catch (Exception e) {
 
-        cboPercurso.removeAllItems();
-        cboPercurso.addItem(cboInicialSelecionar);
-        try {
-            tiposPercurso = dadosTipoPercurso.getList();
-        } catch (Exception ex) {
-            Logger.getLogger(GuiFrequencia.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        for (TipoPercurso percurso : tiposPercurso) {
-            cboPercurso.addItem(percurso);
-        }
+            }
+            for (Empresa emp: empresas) {
+                cboEmpresa.addItem(emp);
+            }
 
-        resetarTela();
+            cboPercurso.removeAllItems();
+            cboPercurso.addItem(cboInicialSelecionar);
+            try {
+                tiposPercurso = dadosTipoPercurso.getList();
+            } catch (Exception ex) {
+                Logger.getLogger(GuiFrequencia.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            for (TipoPercurso percurso : tiposPercurso) {
+                cboPercurso.addItem(percurso);
+            }
+
+            resetarTela();
+        }
 
     }//GEN-LAST:event_formInternalFrameActivated
 
@@ -633,16 +659,18 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
             int qtdLinhas = tblFrequencias.getRowCount();
             for (int i = qtdLinhas - 1; i >= 0; i--) {
                 aluno = (Aluno) tblFrequencias.getValueAt(i, 0);
-                
+
                 // Verifica qual aula está sendo tratada
                 for (AulaMinistrada aula : aluno.getAulasMinistradas()) {
                     if (aula.getAulaEscalada().equals(aulaEscalada)) {
                         aulaMinistrada = aula;
+                        break;
                     }
                 }
                 
                 // Define a presença/falta
-                if (tblFrequencias.getValueAt(i, 3).equals(true)) {
+                Boolean presenca = (Boolean) tblFrequencias.getValueAt(i, 3);
+                if (presenca.equals(true)) {
                     aulaMinistrada.setPresenca(true);
                 } else {
                     aulaMinistrada.setPresenca(false);
@@ -739,6 +767,7 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
             for (AulaMinistrada aula : aluno.getAulasMinistradas()) {
                 if (aula.getAulaEscalada().equals(aulaEscalada)) {
                     aulaMinistrada = aula;
+                    break;
                 }
             }
 
@@ -746,6 +775,14 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
             gp.setAluno(aluno);
             gp.setAulaFrequentada(aulaMinistrada);
             gp.setVisible(true);
+            
+            try {
+                this.setSelected(false);
+            } catch (java.beans.PropertyVetoException e) {
+                    
+            }
+
+            
 
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Por favor, selecione um aluno na lista.", "Registro de Penalidade", JOptionPane.ERROR_MESSAGE);
@@ -792,7 +829,7 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         // TODO add your handling code here:
-        consultando = true;
+        // consultando = true;
         if (consultando && validarCamposConsulta()){
             aulaEscalada = (AulaEscalada) cboAulaEscalada.getSelectedItem();
             
@@ -815,6 +852,10 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
             
             preencherTabelaConsulta();
 
+        } else {
+            aulaEscalada = (AulaEscalada) cboAulaEscalada.getSelectedItem();
+            prepararRelatorio();
+            preencherTabelaRegistro();
         }
     }//GEN-LAST:event_btnConsultarActionPerformed
 
@@ -873,6 +914,12 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
             tipoPercurso = (TipoPercurso) cboPercurso.getSelectedItem();
             numeroCarro = txtNumeroCarro.getText();
             
+            // Atribui falso para as linhas da tabela
+            int qtdLinhass = tblFrequencias.getRowCount();
+            for (int i = qtdLinhass - 1; i >= 0; i--) {
+                tblFrequencias.setValueAt(false, i, 3);
+            }
+            
             int qtdLinhas = tblFrequencias.getRowCount();
             for (int i = qtdLinhas - 1; i >= 0; i--) {
                 aluno = (Aluno) tblFrequencias.getValueAt(i, 0);
@@ -888,10 +935,7 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
         // TODO add your handling code here:
-        if (registrando) {
-            aluno = (Aluno) tblFrequencias.getValueAt(tblFrequencias.getSelectedRow(), 0);
-            atualizarTabela(aluno);
-        }
+
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void cboPercursoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboPercursoItemStateChanged
@@ -901,12 +945,34 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
     }
     }//GEN-LAST:event_cboPercursoItemStateChanged
 
-    private void tblFrequenciasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFrequenciasMouseReleased
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
-    }//GEN-LAST:event_tblFrequenciasMouseReleased
+
+    }//GEN-LAST:event_formComponentShown
+
+    private void formMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_formMouseWheelMoved
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_formMouseWheelMoved
+
+    private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formMouseMoved
+
+    private void formInternalFrameIconified(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameIconified
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_formInternalFrameIconified
+
+    private void formPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_formPropertyChange
+        // TODO add your handling code here:
+        if (registrando) 
+            //preencherTabelaRegistro();
+            atualizarTabela();
+    }//GEN-LAST:event_formPropertyChange
     public void preencherTabelaConsulta() {
         DefaultTableModel tbl = (DefaultTableModel) tblFrequencias.getModel();
-        tblFrequencias.setRowSorter(new TableRowSorter(tbl));
+        //tblFrequencias.setRowSorter(new TableRowSorter(tbl));
 
         int qtdLinhas = tbl.getRowCount();
         for (int i = qtdLinhas - 1; i >= 0; i--) {
@@ -918,16 +984,46 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Nenhum aluno encontrado!", "Frequência", JOptionPane.ERROR_MESSAGE);
         }
-        
+            
         equipe = (Equipe) cboEquipe.getSelectedItem();
         for (Aluno al : alunos) {
             if (al.getEstadoAluno().equals(EstadoAluno.MATRICULADO) && al.getEquipeAluno().equals(equipe)) {
-                Object linha [] = {al};
+                Object linha [] = {al, "-", "-", false, "-"};
                 tbl.addRow(linha);
             }
         }
+        
     }
    
+    public void preencherTabelaRegistro() {
+        DefaultTableModel tbl = (DefaultTableModel) tblFrequencias.getModel();
+        //tblFrequencias.setRowSorter(new TableRowSorter(tbl));
+
+        int qtdLinhas = tbl.getRowCount();
+        for (int i = qtdLinhas - 1; i >= 0; i--) {
+            tbl.removeRow(0);
+        }
+        
+        equipe = (Equipe) cboEquipe.getSelectedItem();
+        
+        // Percorre todos os alunos que estão matriculados na equipe selecionada
+        for (Aluno al : alunos) {
+            if (al.getEstadoAluno().equals(EstadoAluno.MATRICULADO) && al.getEquipeAluno().equals(equipe)) {
+                // Verifica qual aula frequentada está sendo tratada na consulta
+                for (int i=0; i<al.getAulasMinistradas().size(); i++) {
+                    if (al.getAulasMinistradas().get(i).getAulaEscalada().equals(aulaEscalada)) {
+                        // Preenche a tabela com os dados da aula de cada aluno
+                        Object linha [] = {al,
+                            al.getAulasMinistradas().get(i).getQuantidadeInforacoesCometidas(),
+                            al.getAulasMinistradas().get(i).getPontuacaoAulaFrequentada(),
+                            al.getAulasMinistradas().get(i).isPresenca(),
+                            al.getAulasMinistradas().get(i).getDescricaoParecer()};
+                        tbl.addRow(linha);
+                    }
+                }
+            }
+        }
+    }
     
     public void resetarTela() {
         DefaultTableModel tbl = (DefaultTableModel) tblFrequencias.getModel();
@@ -935,7 +1031,7 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
         for (int i = qtdLinhas -1; i>= 0; i--) {
             tbl.removeRow(0);
         }
-        consultando = false;
+        consultando = true;
         alterando = false;
         registrando = false;
         cboEmpresa.setEnabled(true);
@@ -966,6 +1062,8 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
     
     private void prepararConsulta() {
         consultando = true;
+        registrando = false;
+        alterando = false;
         btnConsultar.setEnabled(true);
         tblFrequencias.setEnabled(true);
         chbTodosInstrutor.setEnabled(false);
@@ -1013,25 +1111,27 @@ public class GuiFrequencia extends javax.swing.JInternalFrame {
         btnDefinir.setEnabled(false);
     }
     
-    public void atualizarTabela(Aluno aluno) {
+    public void atualizarTabela() {
         DefaultTableModel tbl = (DefaultTableModel) tblFrequencias.getModel();
         
-        for (AulaMinistrada aula : aluno.getAulasMinistradas()) {
-            if (aula.getAulaEscalada().equals(aulaEscalada)) {
-                aulaMinistrada = aula;
+        int qtdeLinhas = tbl.getRowCount();
+        for (int i=qtdeLinhas-1; i>=0; i--) {
+            aluno = (Aluno) tblFrequencias.getValueAt(i, 0);
+            
+            for (AulaMinistrada aula : aluno.getAulasMinistradas()) {
+                if (aula.getAulaEscalada().equals(aulaEscalada)) {
+                    aulaMinistrada = aula;
+                }
             }
+
+            //tbl.setValueAt(aluno, tblFrequencias.getSelectedRow(), 0);
+            tbl.setValueAt(aulaMinistrada.getInfracoesCometidas().size(), i, 1);
+            tbl.setValueAt(aulaMinistrada.getPontuacaoAulaFrequentada(), i, 2);
+            tbl.setValueAt(aulaMinistrada.getPresenca(), i, 3);
+            tbl.setValueAt(aulaMinistrada.getDescricaoParecer(), i, 4);
         }
         
-        int totalPontuacaoAtual = 0;
-        for (InfracaoCometida infracao : aulaMinistrada.getInfracoesCometidas()) {
-            totalPontuacaoAtual += infracao.getTipoInfracao().getContextoTipoInfracao().getPontuacao();
-        }
-        
-        tbl.setValueAt(aluno, tblFrequencias.getSelectedRow(), 0);
-        tbl.setValueAt(aulaMinistrada.getInfracoesCometidas().size(), tblFrequencias.getSelectedRow(), 1);
-        tbl.setValueAt(totalPontuacaoAtual, tblFrequencias.getSelectedRow(), 2);
-        tbl.setValueAt(true, tblFrequencias.getSelectedRow(), 3);
-        tbl.setValueAt(aulaMinistrada.getDescricaoParecer(), tblFrequencias.getSelectedRow(), 4);
+
 
     }
     

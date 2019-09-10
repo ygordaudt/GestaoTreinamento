@@ -40,6 +40,8 @@ public class GuiRegPenalidade extends javax.swing.JDialog {
     
     private static boolean aberto = false;
     
+    private GuiFrequencia guiFrequencia;
+    
     private AulaMinistrada aulaMinistrada;
     private Aluno aluno;
     private TipoInfracao tipoInfracao;
@@ -241,6 +243,10 @@ public class GuiRegPenalidade extends javax.swing.JDialog {
             if (tblInfracoes.getValueAt(i, 3).equals(true)) {
                 tipoInfracao = (TipoInfracao) tblInfracoes.getValueAt(i, 1);
                 aulaMinistrada.inserirInfracao(tipoInfracao);
+            } else {
+                tipoInfracao = (TipoInfracao) tblInfracoes.getValueAt(i, 1);
+                if (aulaMinistrada.getInfracoesCometidas().contains(infracaoCometida))
+                    aulaMinistrada.deletarInfracaoCometida(infracaoCometida);
             }
         }
         
@@ -305,6 +311,22 @@ public class GuiRegPenalidade extends javax.swing.JDialog {
         // Marca na tabela as infrações selecionadas anteriormente, caso ocorrido.
         qtdLinhas = tblInfracoes.getRowCount();
         for (int i = qtdLinhas - 1; i >= 0; i--) {
+            for (InfracaoCometida infracao : aulaMinistrada.getInfracoesCometidas()) {
+                if (infracao.getTipoInfracao().equals(tipoInfracao)) {
+                    infracaoCometida = infracao;
+                    break;
+                }
+            }
+            if (aulaMinistrada.getInfracoesCometidas().contains(infracaoCometida))
+                tblInfracoes.setValueAt(true, i, 3);
+            else 
+                tblInfracoes.setValueAt(false, i, 3);
+        }
+        
+        /*
+        // Marca na tabela as infrações selecionadas anteriormente, caso ocorrido.
+        qtdLinhas = tblInfracoes.getRowCount();
+        for (int i = qtdLinhas - 1; i >= 0; i--) {
             tipoInfracao = (TipoInfracao)tblInfracoes.getValueAt(i, 1);
             // Verifica qual infracao que está sendo tratado no for
             for (InfracaoCometida infracao : aulaMinistrada.getInfracoesCometidas()) {
@@ -316,6 +338,7 @@ public class GuiRegPenalidade extends javax.swing.JDialog {
                 tblInfracoes.setValueAt(true, i, 3);
             }            
         }
+        */
         
         /*
         // Marca na tabela as infrações selecionadas anteriormente.
@@ -354,6 +377,14 @@ public class GuiRegPenalidade extends javax.swing.JDialog {
         }
         
         lblPontuacaoTotal.setText(Integer.toString(pontuacaoTotal));
+    }
+
+    public GuiFrequencia getGuiFrequencia() {
+        return guiFrequencia;
+    }
+
+    public void setGuiFrequencia(GuiFrequencia guiFrequencia) {
+        this.guiFrequencia = guiFrequencia;
     }
 
     public AulaMinistrada getAulaFrequentada() {

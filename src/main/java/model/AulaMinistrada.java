@@ -37,6 +37,10 @@ public class AulaMinistrada {
         this.infracoesCometidas.remove(infracaoCometida);
         this.setPontuacaoAulaFrequentada(pontuacaoAulaFrequentada-=infracaoCometida.getTipoInfracao().getContextoTipoInfracao().getPontuacao());
     }
+    
+    public Integer getQuantidadeInforacoesCometidas() {
+        return this.getInfracoesCometidas().size();
+    }
 
     public boolean isPresenca() {
         return presenca;

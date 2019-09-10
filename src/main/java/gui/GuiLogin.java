@@ -9,6 +9,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import model.LoginParametro;
 import model.Usuario;
@@ -403,8 +405,6 @@ public class GuiLogin extends javax.swing.JFrame {
          */
         try {
             //javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
-
-        
             
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 
@@ -413,6 +413,8 @@ public class GuiLogin extends javax.swing.JFrame {
                     break;
                 }
             }
+            
+            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
             
             
         } catch (ClassNotFoundException ex) {

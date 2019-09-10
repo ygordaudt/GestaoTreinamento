@@ -39,7 +39,7 @@
     </funcaoColaborador>
     <estadoColaborador>ATIVO</estadoColaborador>
     <matricula>1234</matricula>
-    <nome>Fulano de Tal da Silva</nome>
+    <nome>Fulano da Silva</nome>
     <idAluno>2</idAluno>
     <equipeAluno>
       <idEquipe>1</idEquipe>

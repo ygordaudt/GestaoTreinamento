@@ -12,8 +12,9 @@ import model.LoginParametro;
 public class Xml {
     public static LoginParametro parametro;
     
-    //public static String caminho = System.getProperty("user.dir") + "\\xml"; // Seleciona o caminho atual do projeto.
-    private static final String caminho = "C:\\Users\\ygor.daudt\\Documents\\NetBeansProjects\\GestaoTreinamento\\xml\\";
+    public static String caminho = System.getProperty("user.dir") + "\\xml"; // Seleciona o caminho atual do projeto.
+    //private static final String caminho = "C:\\Users\\ygor.daudt\\Documents\\NetBeansProjects\\GestaoTreinamento\\xml\\";
+    //private static final String caminho = "C:\\Users\\Ygor\\Documents\\NetBeansProjects\\GestaoTreinamento\\xml\\";
     
     public static void gravaXml(String nomeArquivo, Object objeto) throws Exception {
         XStream xstream = new XStream();
