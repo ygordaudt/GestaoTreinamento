@@ -53,6 +53,9 @@ public class GuiCadInfracao extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         tpnlInfracoes = new javax.swing.JTabbedPane();
         pnlContexto = new javax.swing.JPanel();
         lblEmpresa = new javax.swing.JLabel();
@@ -68,16 +71,15 @@ public class GuiCadInfracao extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblTipoInfracao = new javax.swing.JTable();
         lblEmpresa3 = new javax.swing.JLabel();
-        cboContexoInfracao = new javax.swing.JComboBox<>();
+        cboContexoInfracao = new javax.swing.JComboBox<Object>();
         txtDescricaoInfracao = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        btnVoltar = new javax.swing.JButton();
         btnRemover = new javax.swing.JButton();
         btnAlterar = new javax.swing.JToggleButton();
-        btnVoltar = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
 
         setClosable(true);
+        setTitle("Cadastro de Infrações - Controle de Treinamento");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameActivated(evt);
@@ -100,6 +102,32 @@ public class GuiCadInfracao extends javax.swing.JInternalFrame {
 
         jPanel3.setBackground(new java.awt.Color(249, 255, 255));
 
+        jPanel4.setBackground(new java.awt.Color(0, 0, 64));
+
+        jLabel1.setBackground(new java.awt.Color(51, 51, 255));
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semilight", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Cadastro de Infrações");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jPanel1.setBackground(new java.awt.Color(187, 199, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         tpnlInfracoes.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         tpnlInfracoes.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -107,13 +135,14 @@ public class GuiCadInfracao extends javax.swing.JInternalFrame {
             }
         });
 
+        pnlContexto.setBackground(new java.awt.Color(255, 255, 255));
         pnlContexto.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 pnlContextoComponentShown(evt);
             }
         });
 
-        lblEmpresa.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
+        lblEmpresa.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
         lblEmpresa.setText("Descrição do Contexto:");
 
         tblContextoInfracao.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
@@ -151,7 +180,7 @@ public class GuiCadInfracao extends javax.swing.JInternalFrame {
             tblContextoInfracao.getColumnModel().getColumn(1).setMaxWidth(100);
         }
 
-        btnCadastrarContextoInfracao.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
+        btnCadastrarContextoInfracao.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
         btnCadastrarContextoInfracao.setText("Gravar");
         btnCadastrarContextoInfracao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,17 +188,17 @@ public class GuiCadInfracao extends javax.swing.JInternalFrame {
             }
         });
 
-        lblEmpresa1.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
+        lblEmpresa1.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
         lblEmpresa1.setText("Pontuação:");
 
-        txtDescricaoContexto.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
+        txtDescricaoContexto.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
         txtDescricaoContexto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDescricaoContextoActionPerformed(evt);
             }
         });
 
-        txtPontuacaoContexto.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
+        txtPontuacaoContexto.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
         txtPontuacaoContexto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPontuacaoContextoActionPerformed(evt);
@@ -184,7 +213,7 @@ public class GuiCadInfracao extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(pnlContextoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlContextoLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(pnlContextoLayout.createSequentialGroup()
                         .addGroup(pnlContextoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,21 +244,22 @@ public class GuiCadInfracao extends javax.swing.JInternalFrame {
                     .addComponent(txtDescricaoContexto, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         tpnlInfracoes.addTab("Contexto", pnlContexto);
 
+        pnlTipoInfracao.setBackground(new java.awt.Color(255, 255, 255));
         pnlTipoInfracao.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 pnlTipoInfracaoComponentShown(evt);
             }
         });
 
-        lblEmpresa2.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
+        lblEmpresa2.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
         lblEmpresa2.setText("Descrição da Infração:");
 
-        btnCadastrarTipoInfracao.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
+        btnCadastrarTipoInfracao.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
         btnCadastrarTipoInfracao.setText("Gravar");
         btnCadastrarTipoInfracao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,12 +297,12 @@ public class GuiCadInfracao extends javax.swing.JInternalFrame {
         tblTipoInfracao.setSelectionBackground(new java.awt.Color(1, 1, 63));
         jScrollPane2.setViewportView(tblTipoInfracao);
 
-        lblEmpresa3.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
+        lblEmpresa3.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
         lblEmpresa3.setText("Contexto equivalente:");
 
-        cboContexoInfracao.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
+        cboContexoInfracao.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
 
-        txtDescricaoInfracao.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
+        txtDescricaoInfracao.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
         txtDescricaoInfracao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDescricaoInfracaoActionPerformed(evt);
@@ -298,7 +328,7 @@ public class GuiCadInfracao extends javax.swing.JInternalFrame {
                                 .addComponent(txtDescricaoInfracao, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnCadastrarTipoInfracao, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 223, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlTipoInfracaoLayout.setVerticalGroup(
@@ -320,68 +350,7 @@ public class GuiCadInfracao extends javax.swing.JInternalFrame {
 
         tpnlInfracoes.addTab("Tipos de Infração", pnlTipoInfracao);
 
-        jPanel1.setBackground(new java.awt.Color(1, 1, 63));
-        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
-
-        jLabel4.setBackground(new java.awt.Color(250, 249, 254));
-        jLabel4.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Cadastro de Infrações");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tpnlInfracoes)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(tpnlInfracoes, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
-
-        btnRemover.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
-        btnRemover.setText("Excluir");
-        btnRemover.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoverActionPerformed(evt);
-            }
-        });
-
-        btnAlterar.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
-        btnAlterar.setText("Alterar");
-        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarActionPerformed(evt);
-            }
-        });
-
-        btnVoltar.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
+        btnVoltar.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
         btnVoltar.setText("Voltar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -389,43 +358,85 @@ public class GuiCadInfracao extends javax.swing.JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+        btnRemover.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
+        btnRemover.setText("Excluir");
+        btnRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoverActionPerformed(evt);
+            }
+        });
+
+        btnAlterar.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
+        btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tpnlInfracoes)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tpnlInfracoes, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAlterar)
                     .addComponent(btnRemover)
                     .addComponent(btnVoltar))
                 .addContainerGap())
         );
 
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/JCA_Small.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -448,89 +459,6 @@ public class GuiCadInfracao extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         aberto = false;
     }//GEN-LAST:event_formInternalFrameClosed
-
-    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        // TODO add your handling code here:
-        if (alterando) {
-            resetarTelaContextoInfracao();
-            resetarTelaTipoInfracao();
-        }
-
-        else {
-            if (pnlContexto.isShowing()) {
-                try {
-                    ContextoInfracao contextoInfracao = (ContextoInfracao) tblContextoInfracao.getValueAt(tblContextoInfracao.getSelectedRow(), 0);
-                    txtDescricaoContexto.setText(contextoInfracao.getDescricao());
-                    txtPontuacaoContexto.setText(contextoInfracao.getPontuacao().toString());
-                    txtDescricaoContexto.requestFocus();
-                    txtDescricaoContexto.selectAll();
-                    alterando = true;
-                    btnAlterar.setText("Alterando");
-                    btnAlterar.setSelected(true);
-                    tblContextoInfracao.setEnabled(false);
-                    tpnlInfracoes.setEnabled(false);
-                } catch (Exception headlessException) {
-                    JOptionPane.showMessageDialog(null, "Selecione um Contexto de Infração", "Cadastro de Infração", JOptionPane.ERROR_MESSAGE);
-                    btnAlterar.setSelected(false);
-                }
-            } if (pnlTipoInfracao.isShowing()) {
-                try {
-                    TipoInfracao tipoInfracao = (TipoInfracao) tblTipoInfracao.getValueAt(tblTipoInfracao.getSelectedRow(), 0);
-                    cboContexoInfracao.setSelectedItem((ContextoInfracao) tipoInfracao.getContextoTipoInfracao());
-                    txtDescricaoInfracao.setText(tipoInfracao.getDescricaoTipoInfracao());
-                    txtDescricaoInfracao.requestFocus();
-                    txtDescricaoInfracao.selectAll();
-                    alterando = true;
-                    btnAlterar.setText("Alterando");
-                    btnAlterar.setSelected(true);
-                    tblTipoInfracao.setEnabled(false);
-                    tpnlInfracoes.setEnabled(false);
-                } catch (Exception headlessException) {
-                    JOptionPane.showMessageDialog(null, "Selecione um Tipo de Infração.", "Cadastro de Infração", JOptionPane.ERROR_MESSAGE);
-                    btnAlterar.setSelected(false);
-                }
-            }
-        }
-    }//GEN-LAST:event_btnAlterarActionPerformed
-
-    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
-        // TODO add your handling code here:
-        int opcao
-        = JOptionPane.showOptionDialog(null,
-            "Confirma a exclusão?",
-            "Pergunta",
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE, null,
-            new String[]{"Sim", "Não"}, "Sim");
-
-        if (opcao == 0) {
-            if (pnlContexto.isShowing()) {
-                ContextoInfracao contextoInfracao = (ContextoInfracao) tblContextoInfracao.getValueAt(tblContextoInfracao.getSelectedRow(), 0);
-                try {
-                    dadosContextosInfracao.remover(contextoInfracao);
-                } catch (Exception headlessException) {
-                    JOptionPane.showMessageDialog(rootPane, "Contexto removido com sucesso.");
-                }
-
-                preencherTabelaContextoInfracao();
-
-            } if (pnlTipoInfracao.isShowing()){
-                TipoInfracao tipoInfracao = (TipoInfracao) tblTipoInfracao.getValueAt(tblTipoInfracao.getSelectedRow(), 0);
-                try {
-                    dadosTipoInfracao.remover(tipoInfracao);
-                } catch (Exception headlessException) {
-                    JOptionPane.showMessageDialog(rootPane, "Tipo de Infração removido com sucesso.");
-                }
-                preencherTabelaTipoInfracao();
-            }
-        }
-
-    }//GEN-LAST:event_btnRemoverActionPerformed
-
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void tpnlInfracoesComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_tpnlInfracoesComponentShown
         // TODO add your handling code here:
@@ -629,6 +557,88 @@ public class GuiCadInfracao extends javax.swing.JInternalFrame {
             preencherTabelaContextoInfracao();
         }
     }//GEN-LAST:event_btnCadastrarContextoInfracaoActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        // TODO add your handling code here:
+        if (alterando) {
+            resetarTelaContextoInfracao();
+            resetarTelaTipoInfracao();
+        }
+
+        else {
+            if (pnlContexto.isShowing()) {
+                try {
+                    ContextoInfracao contextoInfracao = (ContextoInfracao) tblContextoInfracao.getValueAt(tblContextoInfracao.getSelectedRow(), 0);
+                    txtDescricaoContexto.setText(contextoInfracao.getDescricao());
+                    txtPontuacaoContexto.setText(contextoInfracao.getPontuacao().toString());
+                    txtDescricaoContexto.requestFocus();
+                    txtDescricaoContexto.selectAll();
+                    alterando = true;
+                    btnAlterar.setText("Alterando");
+                    btnAlterar.setSelected(true);
+                    tblContextoInfracao.setEnabled(false);
+                    tpnlInfracoes.setEnabled(false);
+                } catch (Exception headlessException) {
+                    JOptionPane.showMessageDialog(null, "Selecione um Contexto de Infração", "Cadastro de Infração", JOptionPane.ERROR_MESSAGE);
+                    btnAlterar.setSelected(false);
+                }
+            } if (pnlTipoInfracao.isShowing()) {
+                try {
+                    TipoInfracao tipoInfracao = (TipoInfracao) tblTipoInfracao.getValueAt(tblTipoInfracao.getSelectedRow(), 0);
+                    cboContexoInfracao.setSelectedItem((ContextoInfracao) tipoInfracao.getContextoTipoInfracao());
+                    txtDescricaoInfracao.setText(tipoInfracao.getDescricaoTipoInfracao());
+                    txtDescricaoInfracao.requestFocus();
+                    txtDescricaoInfracao.selectAll();
+                    alterando = true;
+                    btnAlterar.setText("Alterando");
+                    btnAlterar.setSelected(true);
+                    tblTipoInfracao.setEnabled(false);
+                    tpnlInfracoes.setEnabled(false);
+                } catch (Exception headlessException) {
+                    JOptionPane.showMessageDialog(null, "Selecione um Tipo de Infração.", "Cadastro de Infração", JOptionPane.ERROR_MESSAGE);
+                    btnAlterar.setSelected(false);
+                }
+            }
+        }
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
+        // TODO add your handling code here:
+        int opcao
+        = JOptionPane.showOptionDialog(null,
+            "Confirma a exclusão?",
+            "Pergunta",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE, null,
+            new String[]{"Sim", "Não"}, "Sim");
+
+        if (opcao == 0) {
+            if (pnlContexto.isShowing()) {
+                ContextoInfracao contextoInfracao = (ContextoInfracao) tblContextoInfracao.getValueAt(tblContextoInfracao.getSelectedRow(), 0);
+                try {
+                    dadosContextosInfracao.remover(contextoInfracao);
+                } catch (Exception headlessException) {
+                    JOptionPane.showMessageDialog(rootPane, "Contexto removido com sucesso.");
+                }
+
+                preencherTabelaContextoInfracao();
+
+            } if (pnlTipoInfracao.isShowing()){
+                TipoInfracao tipoInfracao = (TipoInfracao) tblTipoInfracao.getValueAt(tblTipoInfracao.getSelectedRow(), 0);
+                try {
+                    dadosTipoInfracao.remover(tipoInfracao);
+                } catch (Exception headlessException) {
+                    JOptionPane.showMessageDialog(rootPane, "Tipo de Infração removido com sucesso.");
+                }
+                preencherTabelaTipoInfracao();
+            }
+        }
+    }//GEN-LAST:event_btnRemoverActionPerformed
     
     public void preencherTabelaContextoInfracao() {
         DefaultTableModel tbl = (DefaultTableModel) tblContextoInfracao.getModel();
@@ -742,10 +752,11 @@ public class GuiCadInfracao extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnRemover;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<Object> cboContexoInfracao;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblEmpresa;

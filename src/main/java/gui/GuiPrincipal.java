@@ -114,6 +114,8 @@ public class GuiPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        desktopPane.setBackground(new java.awt.Color(255, 255, 255));
+        desktopPane.setForeground(new java.awt.Color(255, 255, 255));
         desktopPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         this.setExtendedState(MAXIMIZED_BOTH);
 
